@@ -1,0 +1,17 @@
+ 
+name: Hello World CI 
+ on:   push: 
+    branches: [main]   pull_request: 
+    branches: [main] 
+ jobs:   test: 
+    runs-on: ubuntu-latest 
+     steps: 
+-	name: Check out repository         uses: actions/checkout@v4 
+ 
+-	name: Set up Python         uses: actions/setup-python@v5         with: 
+          python-version: "3.x" 
+ 
+-	name: Run Hello World application         run: python hello.py 
+ 
+-	name: Verify expected output         run: python -c "import subprocess; 
+r=subprocess.run(['python','hello.py'],capture_output=True,text=True,check=Tr ue); assert r.stdout.strip() == 'Hello, World!', f'Unexpected output: {r.stdout!r}'; print('Test passed!')" 
